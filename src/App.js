@@ -12,6 +12,7 @@ function Navigation() {
   return (
 <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-slate-900 text-white font-bold">
   <Card />
+  <Inventory />
   <div class="fixed flex flex-col top-0 left-0 w-64 bg-neutral-900 h-full border-rounded">
     <div class="flex items-center justify-center h-14 border-rounded">
       <div>NFT Profit Tracker</div>
@@ -88,14 +89,23 @@ function Navigation() {
 
 function Card() {
   return (
-    <div className="container columns-3 mx-auto px-14 w-full space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center bg-slate-800 rounded-md border border-slate-600 shadow-lg hover:shadow-indigo-500/40 overflow-hidden h-24">
-        card
+    <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
+      <div className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg hover:shadow-indigo-500/40 overflow-hidden h-24">
+        Graph
       </div>
     </div>
   );
 }
 
+function Inventory() {
+  return (
+    <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
+      <div className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg hover:shadow-indigo-500/40 overflow-hidden h-24">
+        Number of sales/Profit
+      </div>
+    </div>
+  );
+}
 
 
 
