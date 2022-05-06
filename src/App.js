@@ -1,4 +1,5 @@
 import './App.css';
+import BarChart from './Charts/BarChart'
 
 function App() {
   return (
@@ -90,8 +91,10 @@ function Navigation() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg hover:shadow-indigo-500/40 overflow-hidden h-24">
-        Graph
+      <div className="flex items-center justify-center text-center h-96 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
+        <div className="w-96">
+        <BarChart />
+        </div>
       </div>
     </div>
   );
@@ -100,12 +103,13 @@ function Card() {
 function Inventory() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg hover:shadow-indigo-500/40 overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
         Number of sales/Profit
       </div>
     </div>
   );
 }
+
 
 
 
