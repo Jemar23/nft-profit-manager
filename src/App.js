@@ -1,10 +1,12 @@
 import './App.css';
 import BarChart from './Charts/BarChart'
+import NftList from './NftDisplay/NftList'
 
 function App() {
   return (
     <div className="App">
       <Navigation />
+      <Container />
     </div>
   );
 }
@@ -91,8 +93,8 @@ function Navigation() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-96 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
-        <div className="w-96">
+      <div className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
+        <div className="">
         <BarChart />
         </div>
       </div>
@@ -103,14 +105,20 @@ function Card() {
 function Inventory() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
         Number of sales/Profit
       </div>
     </div>
   );
 }
 
-
+function Container() {
+  return (
+    <div id="container" className="grid grid-rows-4 grid-flow-col gap-4">
+        
+    </div>
+  );
+}
 
 
 export default App;
