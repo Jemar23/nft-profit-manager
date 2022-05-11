@@ -1,12 +1,12 @@
 import './App.css';
 import BarChart from './Charts/BarChart'
 import NftList from './NftDisplay/NftList'
+import Displaying from './NftDisplay/NftList'
 
 function App() {
   return (
     <div className="App">
       <Navigation />
-      <Container />
     </div>
   );
 }
@@ -16,6 +16,7 @@ function Navigation() {
 <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-slate-900 text-white font-bold">
   <Card />
   <Inventory />
+  <Container />
   <div class="fixed flex flex-col top-0 left-0 w-64 bg-neutral-900 h-full border-rounded">
     <div class="flex items-center justify-center h-14 border-rounded">
       <div>NFT Profit Tracker</div>
@@ -93,8 +94,8 @@ function Navigation() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
-        <div className="">
+      <div className="flex items-center justify-center text-center h-96 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
+        <div className="w-96">
         <BarChart />
         </div>
       </div>
@@ -105,7 +106,7 @@ function Card() {
 function Inventory() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-80 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-slate-800 rounded-md border border-slate-600 shadow-lg overflow-hidden h-24">
         Number of sales/Profit
       </div>
     </div>
@@ -114,8 +115,12 @@ function Inventory() {
 
 function Container() {
   return (
-    <div id="container" className="grid grid-rows-4 grid-flow-col gap-4">
-        
+    <div id="container" className="grid grid-cols-2 justify-items-center">
+      <div className="grid grid-cols-3 gap-4 p-8 w-fit">
+        <img src="https://lh3.googleusercontent.com/fUXzLYjKgqtHqiePsN2nFkjSu2ZK4nRy5BhnPt4Kn8D0ypQv9lBr6g3NJgWDlRGfZjyqWTQsIy0VXW5b35y32CopKWeXO_V1_cBHkQ=w600"></img>
+        <img src="https://lh3.googleusercontent.com/fUXzLYjKgqtHqiePsN2nFkjSu2ZK4nRy5BhnPt4Kn8D0ypQv9lBr6g3NJgWDlRGfZjyqWTQsIy0VXW5b35y32CopKWeXO_V1_cBHkQ=w600" ></img>
+        <img src="https://lh3.googleusercontent.com/fUXzLYjKgqtHqiePsN2nFkjSu2ZK4nRy5BhnPt4Kn8D0ypQv9lBr6g3NJgWDlRGfZjyqWTQsIy0VXW5b35y32CopKWeXO_V1_cBHkQ=w600" ></img>
+        </div>
     </div>
   );
 }

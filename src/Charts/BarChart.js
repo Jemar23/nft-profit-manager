@@ -59,7 +59,7 @@ const BarChart = () => {
 
     const [chart, setChart] = useState([])
 
-    const baseUrl = 'https://api.opensea.io/api/v1/assets?owner=0x9B4040a56888dD3BBBcF08d73aA9e0e07F29C0f1';
+    const baseUrl = 'https://api.opensea.io/api/v1/collections?asset_owner=0x9B4040a56888dD3BBBcF08d73aA9e0e07F29C0f1&offset=0&limit=300';
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const apiKey = '3953aeb7eb99428fb5e561bc416e85ba';
 
@@ -76,7 +76,7 @@ const BarChart = () => {
                 res.json().then((json) => {
                     console.log(json)
                     setChart(json.data)
-                })
+                }) 
             })
             .catch(err => console.error(err));
         }
@@ -86,10 +86,10 @@ const BarChart = () => {
     console.log("charts", chart);
 
     let data = {
-        labels: chart?.nft?.map(nft => nft.name),
+        labels: ["Clay Friends", "HAPEBADGE", "The Ninja Hideout"],
         datasets: [{
             label: 'NFTs',
-            data: chart?.nftAsset?.map(nft => nft.asset),
+            data: [1,1,1],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

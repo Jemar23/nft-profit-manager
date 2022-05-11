@@ -11,12 +11,13 @@ const Gallery = () => {
             document.getElementById("container").append(attributes.name)
         })
     }) 
-
-    return (
-        <div> 
-            
-        </div>
-    );
 }
 
+export function Displaying() {
+    return (
+      <div>
+          <Gallery />
+      </div>      
+    );
+}
 export default Gallery;
