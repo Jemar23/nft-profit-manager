@@ -57,33 +57,33 @@ ChartJS.register(
 
 const BarChart = () => {
 
-    const [chart, setChart] = useState([])
+    // const [chart, setChart] = useState([])
 
-    const baseUrl = 'https://api.opensea.io/api/v1/collections?asset_owner=0x9B4040a56888dD3BBBcF08d73aA9e0e07F29C0f1&offset=0&limit=300';
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiKey = '3953aeb7eb99428fb5e561bc416e85ba';
+    // const baseUrl = 'https://api.opensea.io/api/v1/collections?asset_owner=0x9B4040a56888dD3BBBcF08d73aA9e0e07F29C0f1&offset=0&limit=300';
+    // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    // const apiKey = '3953aeb7eb99428fb5e561bc416e85ba';
 
-    useEffect(() => {
-        const fetchNfts = async () => {
-            await fetch(`${proxyUrl}${baseUrl}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-KEY': `${apiKey}`,
-                    'Access-Control-Allow-Origin': '*'
-                }
-            }).then((res) => {
-                res.json().then((json) => {
-                    console.log(json)
-                    setChart(json.data)
-                }) 
-            })
-            .catch(err => console.error(err));
-        }
-        fetchNfts()
-    }, [baseUrl, proxyUrl ,apiKey])
+    // useEffect(() => {
+    //     const fetchNfts = async () => {
+    //         await fetch(`${proxyUrl}${baseUrl}`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'X-API-KEY': `${apiKey}`,
+    //                 'Access-Control-Allow-Origin': '*'
+    //             }
+    //         }).then((res) => {
+    //             res.json().then((json) => {
+    //                 console.log(json)
+    //                 setChart(json.data)
+    //             }) 
+    //         })
+    //         .catch(err => console.error(err));
+    //     }
+    //     fetchNfts()
+    // }, [baseUrl, proxyUrl ,apiKey])
 
-    console.log("charts", chart);
+    // console.log("charts", chart);
 
     let data = {
         labels: ["Clay Friends", "HAPEBADGE", "The Ninja Hideout"],
