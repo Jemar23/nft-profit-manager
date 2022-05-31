@@ -1,6 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function LoginPage() {
+    const loginUrl = 'http://localhost:8000/login'  
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const submitHandler = async (event) => {
+      event.preventDefault();
+      if (username.trim() === '' || password.trim() === '') {
+        setErrorMessage('Both username and password are required');
+        return;
+      }
+      setErrorMessage(null);
+
+      const data = {
+        username: username,
+        password: password
+      }
+
+      try {
+        let res = await axios({
+          method: 'POST',
+          data: data,
+          url: loginUrl
+        });
+
+        if (res.statusCode === 200) {
+          this.props.history.push("/SideMenu");
+        }
+      }
+      catch (error) {
+
+      }
+    }
+
     return(
  <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
    <div className="max-w-md w-full space-y-8">
@@ -9,7 +44,7 @@ function LoginPage() {
        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-200">Sign in to your account</h2>
        <p className="mt-2 text-center text-sm text-gray-600"></p>
      </div>
-     <form className="mt-8 space-y-6" action="/" method="POST">
+     <form className="mt-8 space-y-6" onSubmit={submitHandler}>
        <input type="hidden" name="remember" value="true" />
        <div className="rounded-md shadow-sm -space-y-px">
          <div>
