@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Routes, Route } from 'react-router-dom'
+
 
 function LoginPage() {
     const loginUrl = 'http://localhost:8000/login'  
@@ -20,20 +21,16 @@ function LoginPage() {
         password: password
       }
 
-      try {
-        let res = await axios({
-          method: 'POST',
-          data: data,
-          url: loginUrl
-        });
+       try {
+         let res = await fetch(`${loginUrl}`, data);
 
-        if (res.statusCode === 200) {
-          this.props.history.push("/SideMenu");
-        }
-      }
-      catch (error) {
+         if (res.statusCode === 200) {
+           this.props.history.push("/login");
+         }
+       }
+       catch (error) {
 
-      }
+       }
     }
 
     return(
@@ -44,7 +41,7 @@ function LoginPage() {
        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-200">Sign in to your account</h2>
        <p className="mt-2 text-center text-sm text-gray-600"></p>
      </div>
-     <form className="mt-8 space-y-6" onSubmit={submitHandler}>
+     <form className="mt-8 space-y-6" action="/login" method="GET">
        <input type="hidden" name="remember" value="true" />
        <div className="rounded-md shadow-sm -space-y-px">
          <div>

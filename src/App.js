@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path='/' element={<LoginPage/>} />
-        <Route exact path='/login' element={<SideMenu/>} />
+        <Route exact path='/Login' element={<SideMenu/>} />
       </Routes>
       {/* <SideMenu /> */}
     </div>
@@ -85,7 +85,7 @@ function SideMenu() {
                 </a>
             </li>
             <li>
-                <a href="/login" className="flex items-center space-x-3 text-gray-100 p-2 rounded-full font-medium text-lg hover:bg-blue-500 focus:bg-gray-200 focus:shadow-outline">
+                <a href="/" className="flex items-center space-x-3 text-gray-100 p-2 rounded-full font-medium text-lg hover:bg-blue-500 focus:bg-gray-200 focus:shadow-outline">
                     <span className="text-gray-200">
                         <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -111,7 +111,7 @@ function SideMenu() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <div className="w-96">
         <BarChart />
         </div>
@@ -123,7 +123,7 @@ function Card() {
 function Inventory() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-80 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <Container />
       </div>
     </div>
@@ -133,10 +133,13 @@ function Inventory() {
 function Container() {
   return (
     <div id="container" className="">
-      <div className="grid grid-cols-3 gap-4 p-8 w-fit">
+      <div className="grid grid-cols-3 gap-4 p-24 w-fit">
         <img src="https://lh3.googleusercontent.com/fUXzLYjKgqtHqiePsN2nFkjSu2ZK4nRy5BhnPt4Kn8D0ypQv9lBr6g3NJgWDlRGfZjyqWTQsIy0VXW5b35y32CopKWeXO_V1_cBHkQ=w600"></img>
-        <img src="https://lh3.googleusercontent.com/_xMxy7S9sXllsXc2O450bwb-9Mzx-Jr80m7npaJuBSxfiB0FtZLigjg6bACu93SFwvWfjzZgOuuehvPR2d6UNPWVKkBnWlEdf7GR=w1400-k" ></img>
-        <img src="https://lh3.googleusercontent.com/Ag6-3dwQUS_iG2vVlKYbqpKrLCONuBLbwnYKyOd6FAWs3DIlRhsAyIObpFP8Qiqak72kYIYXq7YCzzbQn6hFyAq5FZldQvv_MNsWkg=w600" ></img>
+        <img src="https://img.seadn.io/files/1fd0c17561278a3f9e8758e813d71564.png?auto=format&h=720&w=720" ></img>
+        <img src="https://img.seadn.io/files/5f13880da2b222fa24bc0854cc074d89.png?auto=format&h=720&w=720" ></img>
+        <img src="https://lh3.googleusercontent.com/39EZYz1YwBsYPRwOz23KGPIaCrWOTH7ibtD-9sIPKoXUUuz9_fcpzPLtJ8FmbcjI4Dz08pIB3g3xdEFj2U3FeWLKE4KOUrS6zkp0BQ=w600"></img>
+        <img src="https://img.seadn.io/files/da4f6bef28812df50c04f0b6a294f968.png?auto=format&h=720&w=720" ></img>
+        <img src="https://img.seadn.io/files/c3af547bf9c7cfff8eb0be5303623cb7.png?auto=format&w=600" ></img>
         </div>
     </div>
   );
@@ -145,7 +148,7 @@ function Container() {
 function Sales() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <LineChart />
       </div>
     </div>
