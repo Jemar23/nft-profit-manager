@@ -86,10 +86,10 @@ const BarChart = () => {
     // console.log("charts", chart);
 
     let data = {
-        labels: ["Clay Friends", "Mutant Ape Yacht Club", "3Landers", "Koala Intelligence Agency", "Bored Ape Yacht Club", "Cool Cats NFT"],
+        labels: ["Possessed NFT"],
         datasets: [{
             label: 'NFTs',
-            data: [1,1,1,1,1,1],
+            data: [6],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

@@ -1,8 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-
-   const KEY = '3953aeb7eb99428fb5e561bc416e85ba';
-   const OpenSeaUrl = 'https://api.opensea.io/api/v1/assets?owner=0x9B4040a56888dD3BBBcF08d73aA9e0e07F29C0f1'
+import NftCard from './NftCard';
 
 //   const Gallery = () => {
 //       fetch(`${OpenSeaUrl}`,
@@ -58,10 +56,12 @@ import React from 'react';
     
 // }
 
-export function Displaying() {
+export function Displaying({ assets }) {
     return (
       <div>
-          
+         {assets.forEach(nft => {
+           return <NftCard nft={nft} key={nft.key}/>
+         })}
       </div>      
     );
 }

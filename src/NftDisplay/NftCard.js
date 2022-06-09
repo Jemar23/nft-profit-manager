@@ -1,9 +1,9 @@
 import React from 'react';
 
-function NftCard() {
+function NftCard({ asset }) {
     return(
         <div>
-            
+            {asset.name}
         </div>
     );
 }

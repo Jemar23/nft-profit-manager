@@ -1,9 +1,10 @@
 import './App.css';
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import { Routes, Route } from 'react-router-dom'
 import BarChart from './Charts/BarChart'
 import LineChart from './Charts/LineChart'
 import LoginPage from './Login/LoginPage'
+import Displaying from './NftDisplay/NftList'
 
 
 
@@ -15,13 +16,62 @@ function App() {
         <Route exact path='/' element={<LoginPage/>} />
         <Route exact path='/Login' element={<SideMenu/>} />
       </Routes>
-      {/* <SideMenu /> */}
+    </div>
+  );
+}
+
+
+function WalletConnect() {
+    const [walletAddress, setWalletAddress] = useState(null)
+    const [walletNft, setWalletNft] = useState([])
+
+    const connectWallet = async () => {
+      if (typeof window.ethereum !== 'undefined') {
+        console.log('MetaMask is installed!');
+        const accountRequest = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+        setWalletAddress(accountRequest[0])
+      }
+    }
+
+    const getNftData = async () => {
+      if(!walletAddress) return;
+
+      const options = {
+        method: 'GET',
+        headers: {Accept: 'application/json', 'X-API-KEY': '3953aeb7eb99428fb5e561bc416e85ba'}
+      };
+      
+      const res = await fetch(`https://api.opensea.io/api/v1/assets?owner=${walletAddress}&order_direction=desc&limit=20&include_orders=false`, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+
+        const data = await res.json()
+
+        setWalletNft(data.assets)
+    }
+
+    useEffect(() => {
+        getNftData();
+    }, [walletAddress])
+
+  return(
+    <div>
+       <div className="text-center">
+        Account: {walletAddress}
+      </div>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={connectWallet}>
+        Connect Wallet
+    </button>
+    {/* <Container nft={walletNft}/>   */}
     </div>
   );
 }
 
 function SideMenu() {
   return (
+    
   <div className="flex flex-wrap bg-gray-100 w-full h-screen">
     <div className="w-3/12 bg-black rounded-f p-3 shadow-lg">
         <div className="flex items-center space-x-4 p-2 mb-5">
@@ -31,6 +81,7 @@ function SideMenu() {
                 <div className="text-sm tracking-wide flex items-center space-x-1">
                 <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="20px" height="40px"><polygon fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"/><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"/></svg><div className="text-gray-200">Verified</div>
                 </div>
+                {/* <WalletConnect /> */}
             </div>
         </div>
         <ul className="space-y-2 text-sm">
@@ -99,6 +150,9 @@ function SideMenu() {
 
     <div className="w-9/12">
         <div className="p-4 text-gray-500 bg-gradient-to-r from-black to-blue-900">
+            <div className="flex justify-end">
+              <WalletConnect />
+            </div>
             <Card />
             <Inventory />
             <Sales />
@@ -111,7 +165,7 @@ function SideMenu() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <div className="w-96">
         <BarChart />
         </div>
@@ -123,7 +177,7 @@ function Card() {
 function Inventory() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <Container />
       </div>
     </div>
@@ -134,12 +188,16 @@ function Container() {
   return (
     <div id="container" className="">
       <div className="grid grid-cols-3 gap-4 p-24 w-fit">
-        <img src="https://lh3.googleusercontent.com/fUXzLYjKgqtHqiePsN2nFkjSu2ZK4nRy5BhnPt4Kn8D0ypQv9lBr6g3NJgWDlRGfZjyqWTQsIy0VXW5b35y32CopKWeXO_V1_cBHkQ=w600"></img>
-        <img src="https://img.seadn.io/files/1fd0c17561278a3f9e8758e813d71564.png?auto=format&h=720&w=720" ></img>
-        <img src="https://img.seadn.io/files/5f13880da2b222fa24bc0854cc074d89.png?auto=format&h=720&w=720" ></img>
-        <img src="https://lh3.googleusercontent.com/39EZYz1YwBsYPRwOz23KGPIaCrWOTH7ibtD-9sIPKoXUUuz9_fcpzPLtJ8FmbcjI4Dz08pIB3g3xdEFj2U3FeWLKE4KOUrS6zkp0BQ=w600"></img>
-        <img src="https://img.seadn.io/files/da4f6bef28812df50c04f0b6a294f968.png?auto=format&h=720&w=720" ></img>
-        <img src="https://img.seadn.io/files/c3af547bf9c7cfff8eb0be5303623cb7.png?auto=format&w=600" ></img>
+         {/* <Displaying />   */}
+        {/* {nfts.map(nft => {
+          return nft
+        })} */}
+         <img src="https://pbs.twimg.com/tweet_video_thumb/FSrGpHcX0AING4V.jpg"></img>
+        <img src="https://pbs.twimg.com/media/FPcWZn-WQAM_BjV.jpg:large" ></img>
+        <img src="https://pbs.twimg.com/profile_images/1489199274164371458/Ax4OhQss_400x400.jpg" ></img>
+        <img src="https://pbs.twimg.com/tweet_video_thumb/FR3Yj10WQAYRuYn.jpg"></img>
+        <img src="https://pbs.twimg.com/tweet_video_thumb/FQafK2RWYAk6b74.jpg" ></img>
+        <img src="https://pbs.twimg.com/profile_images/1484489547757010951/xQosNQ4I_400x400.jpg" ></img>
         </div>
     </div>
   );
@@ -148,11 +206,12 @@ function Container() {
 function Sales() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <LineChart />
       </div>
     </div>
   );
 }
+
 
 export default App;
