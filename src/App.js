@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import BarChart from './Charts/BarChart'
 import LineChart from './Charts/LineChart'
 import LoginPage from './Login/LoginPage'
+import Polar from './Charts/PolarAreaChart'
 import Displaying from './NftDisplay/NftList'
 
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<LoginPage/>} />
         <Route exact path='/Login' element={<SideMenu/>} />
+        <Route exact path='/gallery' element={<WalletConnect />} />
       </Routes>
     </div>
   );
@@ -44,12 +46,28 @@ function WalletConnect() {
       
       const res = await fetch(`https://api.opensea.io/api/v1/assets?owner=${walletAddress}&order_direction=desc&limit=20&include_orders=false`, options)
         .then(response => response.json())
+        .then(({ assets }) => {
+          assets.forEach((attributes) => {
+            document.getElementById("container").append(renderImageData(attributes))
+          })
+        })
         .then(response => console.log(response))
         .catch(err => console.error(err));
 
         const data = await res.json()
 
         setWalletNft(data.assets)
+    }
+
+    const renderImageData = ({ name, description, permalink, image_preview_url} ) => {
+      const newElement = document.getElementById("temp").cloneNode(true)
+
+      newElement.querySelector("h1").innerText = name
+      newElement.querySelector("a").href = permalink
+      newElement.querySelector("img").src = image_preview_url
+      newElement.querySelector("img").alt = description
+
+      return newElement
     }
 
     useEffect(() => {
@@ -64,7 +82,7 @@ function WalletConnect() {
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={connectWallet}>
         Connect Wallet
     </button>
-    {/* <Container nft={walletNft}/>   */}
+     <Container nft={walletNft}/>  
     </div>
   );
 }
@@ -96,13 +114,13 @@ function SideMenu() {
                 </a>
             </li>
             <li>
-                <a href="#" className="flex items-center space-x-3 text-gray-100 p-2 rounded-full font-medium text-lg hover:bg-blue-500 focus:bg-gray-200 focus:shadow-outline">
+                <a href="/gallery" className="flex items-center space-x-3 text-gray-100 p-2 rounded-full font-medium text-lg hover:bg-blue-500 focus:bg-gray-200 focus:shadow-outline">
                     <span className="text-gray-200">
                         <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                         </svg>
                     </span>
-                    <span>Notifications</span>
+                    <span>Gallery</span>
                 </a>
             </li>
             <li>
@@ -154,8 +172,9 @@ function SideMenu() {
               <WalletConnect />
             </div>
             <Card />
-            <Inventory />
+            {/* <Inventory /> */}
             <Sales />
+            <Pie />
         </div>
     </div>
   </div>
@@ -165,7 +184,7 @@ function SideMenu() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <div className="w-96">
         <BarChart />
         </div>
@@ -174,40 +193,47 @@ function Card() {
   );
 }
  
-function Inventory() {
-  return (
-    <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
-        <Container />
-      </div>
-    </div>
-  );
-}
+// function Inventory() {
+//   return (
+//     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
+//       <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+//         <Container />
+//       </div>
+//     </div>
+//   );
+// }
 
 function Container() {
   return (
-    <div id="container" className="">
-      <div className="grid grid-cols-3 gap-4 p-24 w-fit">
-         {/* <Displaying />   */}
-        {/* {nfts.map(nft => {
-          return nft
-        })} */}
-         <img src="https://pbs.twimg.com/tweet_video_thumb/FSrGpHcX0AING4V.jpg"></img>
-        <img src="https://pbs.twimg.com/media/FPcWZn-WQAM_BjV.jpg:large" ></img>
-        <img src="https://pbs.twimg.com/profile_images/1489199274164371458/Ax4OhQss_400x400.jpg" ></img>
-        <img src="https://pbs.twimg.com/tweet_video_thumb/FR3Yj10WQAYRuYn.jpg"></img>
-        <img src="https://pbs.twimg.com/tweet_video_thumb/FQafK2RWYAk6b74.jpg" ></img>
-        <img src="https://pbs.twimg.com/profile_images/1484489547757010951/xQosNQ4I_400x400.jpg" ></img>
+    <div id="container" className="text-white grid grid-cols-4 gap-4 p-24 w-fit">
+      <div id="temp" className="">
+        <h1 className="text-center"></h1>
+        <a target="_blank">
+        <img src="" alt="" />  
+        </a>
+        {/* <a href="" target="_blank" />
+        <img src="" alt="" /> */}
         </div>
     </div>
   );
 }
 
+
 function Sales() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <LineChart />
+      </div>
+    </div>
+  );
+}
+
+function Pie() {
+  return (
+    <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
+      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+        <Polar />
       </div>
     </div>
   );
@@ -215,3 +241,13 @@ function Sales() {
 
 
 export default App;
+ {/* <Displaying />   */}
+        {/* {nfts.map(nft => {
+          return nft
+        })} */}
+        {/* <img src="https://pbs.twimg.com/tweet_video_thumb/FSrGpHcX0AING4V.jpg"></img>
+        <img src="https://pbs.twimg.com/media/FPcWZn-WQAM_BjV.jpg:large" ></img>
+        <img src="https://pbs.twimg.com/profile_images/1489199274164371458/Ax4OhQss_400x400.jpg" ></img>
+        <img src="https://pbs.twimg.com/tweet_video_thumb/FR3Yj10WQAYRuYn.jpg"></img>
+        <img src="https://pbs.twimg.com/tweet_video_thumb/FQafK2RWYAk6b74.jpg" ></img>
+        <img src="https://pbs.twimg.com/profile_images/1484489547757010951/xQosNQ4I_400x400.jpg" ></img> */}
