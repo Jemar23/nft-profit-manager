@@ -41,14 +41,14 @@ function LoginPage() {
        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-200">Sign in to your account</h2>
        <p className="mt-2 text-center text-sm text-gray-600"></p>
      </div>
-     <form className="mt-8 space-y-6" action="/login" method="GET">
+     <form className="mt-8 space-y-6" action="/Menu" method="GET">
        <input type="hidden" name="remember" value="true" />
        <div className="rounded-md shadow-sm -space-y-px">
-         <div>
+         <div className="p-2">
            <label for="user-name" className="sr-only">User Name</label>
            <input id="user-name" name="username" type="username" autocomplete="username" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="User Name" />
          </div>
-         <div>
+         <div className="p-2">
            <label for="password" className="sr-only">Password</label>
            <input id="password" name="password" type="password" autocomplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
          </div>

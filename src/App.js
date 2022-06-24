@@ -5,6 +5,7 @@ import BarChart from './Charts/BarChart'
 import LineChart from './Charts/LineChart'
 import LoginPage from './Login/LoginPage'
 import Polar from './Charts/PolarAreaChart'
+import SignUp from './Login/SignUp'
 import Displaying from './NftDisplay/NftList'
 
 
@@ -14,8 +15,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path='/' element={<LoginPage/>} />
-        <Route exact path='/Login' element={<SideMenu/>} />
+      <Route exact path='/' element={<SignUp/>} />
+        <Route exact path='/Login' element={<LoginPage/>} />
+        <Route exact path='/Menu' element={<SideMenu/>} />
         <Route exact path='/gallery' element={<WalletConnect />} />
       </Routes>
     </div>
@@ -184,7 +186,7 @@ function SideMenu() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <div className="w-96">
         <BarChart />
         </div>
@@ -222,7 +224,7 @@ function Container() {
 function Sales() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <LineChart />
       </div>
     </div>
@@ -232,7 +234,7 @@ function Sales() {
 function Pie() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-96 bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
         <Polar />
       </div>
     </div>
