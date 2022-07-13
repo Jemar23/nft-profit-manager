@@ -6,7 +6,7 @@ import LineChart from './Charts/LineChart'
 import LoginPage from './Login/LoginPage'
 import Polar from './Charts/PolarAreaChart'
 import SignUp from './Login/SignUp'
-import Displaying from './NftDisplay/NftList'
+import Prices from './CryptoPrices/Currencies';
 
 
 
@@ -19,6 +19,7 @@ function App() {
         <Route exact path='/Login' element={<LoginPage/>} />
         <Route exact path='/Menu' element={<SideMenu/>} />
         <Route exact path='/gallery' element={<WalletConnect />} />
+        <Route exact path='/crypto' element={<Prices />} />
       </Routes>
     </div>
   );
@@ -136,13 +137,13 @@ function SideMenu() {
                 </a>
             </li>
             <li>
-                <a href="#" className="flex items-center space-x-3 text-gray-100 p-2 rounded-full font-medium text-lg hover:bg-blue-500 focus:bg-gray-200 focus:shadow-outline">
+                <a href="/crypto" className="flex items-center space-x-3 text-gray-100 p-2 rounded-full font-medium text-lg hover:bg-blue-500 focus:bg-gray-200 focus:shadow-outline">
                     <span className="text-gray-200">
                         <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                         </svg>
                     </span>
-                    <span>Settings</span>
+                    <span>Crypto Prices</span>
                 </a>
             </li>
             <li>
@@ -186,7 +187,7 @@ function SideMenu() {
 function Card() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden">
         <div className="w-96">
         <BarChart />
         </div>
@@ -207,7 +208,7 @@ function Card() {
 
 function Container() {
   return (
-    <div id="container" className="text-white grid grid-cols-4 gap-4 p-24 w-fit">
+    <div id="container" className="text-white grid grid-cols-5 gap-4 p-24 w-fit">
       <div id="temp" className="">
         <h1 className="text-center"></h1>
         <a target="_blank">
@@ -224,7 +225,7 @@ function Container() {
 function Sales() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden">
         <LineChart />
       </div>
     </div>
@@ -234,7 +235,7 @@ function Sales() {
 function Pie() {
   return (
     <div className="container mx-auto px-14 w-2/3 space-y-4 pt-12 text-lg text-slate-300">
-      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden h-24">
+      <div id="inventory" className="flex items-center justify-center text-center h-fit bg-black rounded-md border border-slate-700 shadow-lg overflow-hidden">
         <Polar />
       </div>
     </div>
@@ -243,13 +244,3 @@ function Pie() {
 
 
 export default App;
- {/* <Displaying />   */}
-        {/* {nfts.map(nft => {
-          return nft
-        })} */}
-        {/* <img src="https://pbs.twimg.com/tweet_video_thumb/FSrGpHcX0AING4V.jpg"></img>
-        <img src="https://pbs.twimg.com/media/FPcWZn-WQAM_BjV.jpg:large" ></img>
-        <img src="https://pbs.twimg.com/profile_images/1489199274164371458/Ax4OhQss_400x400.jpg" ></img>
-        <img src="https://pbs.twimg.com/tweet_video_thumb/FR3Yj10WQAYRuYn.jpg"></img>
-        <img src="https://pbs.twimg.com/tweet_video_thumb/FQafK2RWYAk6b74.jpg" ></img>
-        <img src="https://pbs.twimg.com/profile_images/1484489547757010951/xQosNQ4I_400x400.jpg" ></img> */}
