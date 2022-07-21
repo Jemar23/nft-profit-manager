@@ -18,7 +18,7 @@ function CheckProfits() {
         if (calculation > 0) {
             return "Awesome you made a profit!"
         } else if (calculation === 0) {
-            return "well... at least you did take a loss"
+            return "well... at least you didn't take a loss"
         } else {
             return "Hold this L...smh"
         }
