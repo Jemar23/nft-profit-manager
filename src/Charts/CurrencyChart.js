@@ -60,7 +60,7 @@ ChartJS.register(
 function CurrencyChart() {
 
     const [currency, setCurrency] = useState([]);
-    let price = []
+    const date = new Date();
     
     const baseUrl = 'https://api.coinbase.com/v2/prices/BTC-USD/spot';
 
@@ -70,18 +70,13 @@ function CurrencyChart() {
             headers: {Accept: 'application/json'}
           };
           
-          const res = await fetch(`${baseUrl}`, options)
+           fetch(`${baseUrl}`, options)
           .then(response => response.json())
+          .then(res => {
+            setCurrency(res.data.amount)
+          })
           .then(response => console.log(response)) 
           .catch(err => console.error(err));
-
-           for (const dataObj of res.data.amount) {
-             price.push(dataObj.amount)
-           }
-
-        const data = await res.json()
-          
-        setCurrency(data.amount)
     }
 
     useEffect(() => {
@@ -90,12 +85,15 @@ function CurrencyChart() {
     
     
 
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
 
     let data = {
-        labels: currency?.data?.map(x => x.base),
+        labels: [`${month}--${day}--${year}`],
         datasets: [{
             label: 'Bitcoin Price',
-            data: price,
+            data: {currency},
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
