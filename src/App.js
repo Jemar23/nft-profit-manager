@@ -98,7 +98,7 @@ function SideMenu() {
   <div className="flex flex-wrap bg-gray-100 w-full h-screen">
     <div className="w-3/12 bg-black rounded-f p-3 shadow-lg">
         <div className="flex items-center space-x-4 p-2 mb-5">
-            <img className="h-48 rounded-full" src="https://pbs.twimg.com/tweet_video_thumb/FMd6TJVXsAM_P2q.jpg" alt="NFT image" />
+            <img className="h-48 rounded-full" src="https://lh3.googleusercontent.com/-j8nIV5iv0V0MF4T1FLp7XpZm_P4C1BdNV8QQMUFpaxdiDdXOMdkxFgjRaPGgYnN_I4DlSdRNo79pJtig7esjFjc3R4F3F39jXTt=w600" alt="NFT image" />
             <div>
                 <h4 className="font-semibold text-xl text-gray-100 capitalize font-poppins tracking-wide">NFT Profit Manager</h4>
                 <div className="text-sm tracking-wide flex items-center space-x-1">
